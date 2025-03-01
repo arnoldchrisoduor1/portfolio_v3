@@ -15,7 +15,7 @@ const Hero = () => {
         animate={{opacity: 1, y: 0}}
         transition={{delay: 0.1}}
       >
-        <h1 className="text-5xl tracking-tighter">Engineering Intelligence</h1>
+        <h1 className="text-5xl tracking-tighter">Intelligence Engineering</h1>
       </motion.div>
 
       <motion.div 

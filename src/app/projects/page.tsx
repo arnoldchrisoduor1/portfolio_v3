@@ -117,7 +117,7 @@ const Page = () => {
             className=""
           >
             <p
-              className={`px-2 py-1 inline-block rounded-full min-w-max text-lg lg:text-xl hover:cursor-pointer ${
+              className={`px-2 py-1 inline-block rounded-full min-w-max text-lg lg:text-xl hover:cursor-pointer hover:bg-black/60 ${
                 activeProjectTab === project.id ? "bg-black" : "bg-black/30"
               }`}
             >
