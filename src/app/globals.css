@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --customGreen: #2aad93;
+  --font-sans: 'Outfit', sans-serif; /* Define Outfit properly */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a2c1c;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans); /* Use the CSS variable */
+}
