@@ -24,7 +24,7 @@ const Hero = () => {
   animate={{opacity: 1, y: 0}}
   transition={{delay: 0.2}}
 >
-  <p className="text-lg">Systems Engineering student <span className="text-blue-500 hover:cursor-pointer"><a>@Mount_Kenya_University</a></span></p>
+  <p className="text-lg">Systems Engineering student <span className="text-blue-500 hover:cursor-pointer"><a>@Mount Kenya University</a></span></p>
   <p className="text-lg">Founder and CEO <span className="text-blue-500 hover:cursor-pointer"><a>@EventIQ</a></span></p>
   <p className="text-lg">Technical Writer <span className="text-blue-500 hover:cursor-pointer"><a>@Medium</a></span></p>
   <p className="text-lg">Freelancer <span className="text-blue-500 hover:cursor-pointer"><a>@Upwork</a></span></p>
