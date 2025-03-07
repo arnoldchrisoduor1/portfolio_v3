@@ -19,7 +19,7 @@ const Hero = () => {
       </motion.div>
 
       <motion.div 
-  className="mt-[65%] lg:mt-10 w-full lg:w-fit mx-auto text-center lg:text-start flex flex-col gap-5"
+  className="mt-[65%] lg:mt-10 w-full lg:w-fit mx-auto px-2 text-center lg:text-start flex flex-col gap-5"
   initial={{opacity: 0, y: 20}}
   animate={{opacity: 1, y: 0}}
   transition={{delay: 0.2}}
