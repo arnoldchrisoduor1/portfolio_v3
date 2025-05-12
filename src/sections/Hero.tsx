@@ -4,7 +4,7 @@ import React from "react";
 const Hero = () => {
   return (
     <>
-      <div className="flex justify-self-center my-3 lg:mt-6 py-1 px-2 bg-black rounded-full items-center gap-2">
+      <div className="flex justify-self-center w-fit my-3 mx-auto lg:mt-6 py-1 px-2 bg-black rounded-full items-center gap-2">
         <p>Training Neurons</p>
         <div className="w-1 h-1 bg-green-500 rounded-full animate-ping"></div>
       </div>
@@ -25,9 +25,9 @@ const Hero = () => {
   transition={{delay: 0.2}}
 >
   <p className="text-lg">Systems Engineering student <span className="text-blue-500 hover:cursor-pointer"><a>@Mount Kenya University</a></span></p>
-  <p className="text-lg">Founder and CEO <span className="text-blue-500 hover:cursor-pointer"><a>@EventIQ</a></span></p>
+  <p className="text-lg">Founder and CEO <span className="text-blue-500 hover:cursor-pointer"><a>@BeanCart</a></span></p>
   <p className="text-lg">Technical Writer <span className="text-blue-500 hover:cursor-pointer"><a>@Medium</a></span></p>
-  <p className="text-lg">Freelancer <span className="text-blue-500 hover:cursor-pointer"><a>@Upwork</a></span></p>
+  {/* <p className="text-lg">Freelancer <span className="text-blue-500 hover:cursor-pointer"><a>@Upwork</a></span></p> */}
 </motion.div>
     </>
   );
