@@ -9,17 +9,18 @@ import Link from "next/link";
 const projects: Project[] = [
   {
     id: "medicals",
-    categories: ["AI/ML"],
-    title: "Medical ML Model",
+    categories: ["AI/ML", "FullStack", "MLops"],
+    title: "NeumoAI",
     description:
-      "Trained and tuned the parameters of various regression machine learning models to get the best model that can predict a patients medical costs based on certain criteria some of the models were:- XGBoost, Random, Forest with RFE, Ridge regression and others.",
+      "Trained a custom CNN to detect the presence of Pneumonia from X-ray scans of the lungs upto 96% accuracy",
     tools: [
       { id: 1, item: "Python", color: "bg-blue-600" },
       { id: 2, item: "Scikit-learn", color: "bg-yellow-500" },
       { id: 3, item: "TensorFlow", color: "bg-orange-500" },
+      { id: 4, item: "NextJs", color: "bg-orange-500" },
     ],
     codeLink: "https://github.com/arnoldchrisoduor1/MachineLearning-and-NeuralNetworks",
-    liveLink: null,
+    liveLink: "https://neumoai.netlify.app/",
     delay: 0.1
   },
   {
@@ -74,17 +75,17 @@ const projects: Project[] = [
     delay: 0.2
   },
   {
-    id: "beancart-landing",
+    id: "fluxstore-landing",
     categories: ["Web", "FrontEnd"],
-    title: "BeanCart Landing Page",
+    title: "Flux Store Landing Page",
     description:
-      "This is the landing page for the BeanCart e-commerce platform, modern design with intuitive animation to make the page responsive",
+      "An ecommerce platform landing page made with cutting edge technologies and smooth animations for that modern look.",
     tools: [
       { id: 4, item: "Vue", color: "bg-green-300" },
       { id: 6, item: "Tailwind", color: "bg-cyan-500" },
     ],
-    codeLink: "https://github.com/arnoldchrisoduor1/BeanCart",
-    liveLink: "https://beancart.shop",
+    codeLink: "https://github.com/arnoldchrisoduor1/FluxStore",
+    liveLink: "https://fluxstore.netlify.app/",
     delay: 0.2
   },
   {
