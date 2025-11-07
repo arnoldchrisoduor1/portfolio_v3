@@ -92,9 +92,9 @@ const projects: Project[] = [
       { name: "OpenCV", category: "Image Processing" }
     ],
     images: [
-      "/api/placeholder/800/600?text=NeumoAI+Dashboard",
-      "/api/placeholder/800/600?text=Model+Training",
-      "/api/placeholder/800/600?text=X-ray+Analysis"
+      "images/neumo_1.png",
+      "images/neumo_2.png",
+      "images/neumo_3.png"
     ],
     challenges: [
       {
@@ -156,30 +156,30 @@ const projects: Project[] = [
       { label: "Uptime", value: "99.9%" },
       { label: "Users", value: "500+" }
     ],
-    codeLink: "https://github.com/arnoldchrisoduor1/MachineLearning-and-NeuralNetworks",
+    codeLink: "https://github.com/arnoldchrisoduor1/NeumoAI",
     liveLink: "https://neumoai.netlify.app/",
     featured: true,
     delay: 0.1
   },
   {
-    id: "iris",
-    title: "Iris",
-    subtitle: "Mobile Object Detection App",
-    description: "Real-time object detection using custom CNNs on mobile devices",
+    id: "fluxstore",
+    title: "Flux Store",
+    subtitle: "An online ecommerce landing page",
+    description: "Modern, interactive e-commerce landing page of the future",
     fullDescription:
-      "A cross-platform mobile application that leverages custom-trained Convolutional Neural Networks to detect and classify everyday objects in real-time using device camera.",
+      "This is an e-commerce landing page built with the focus of a modern look, interactive feel and modern technologies for fast load and SWE optimization.",
     categories: ["AI/ML", "Mobile", "Computer Vision"],
     technologies: [
-      { name: "React Native", category: "Mobile" },
-      { name: "TensorFlow Lite", category: "ML Framework" },
-      { name: "Python", category: "Language" },
-      { name: "AWS Lambda", category: "Cloud" },
-      { name: "Firebase", category: "Backend" }
+      { name: "Vue", category: "Web" },
+    //   { name: "TensorFlow Lite", category: "ML Framework" },
+      { name: "Typescript", category: "Language" },
+    //   { name: "AWS Lambda", category: "Cloud" },
     ],
     images: [
-      "/api/placeholder/800/600?text=Iris+Mobile+App",
-      "/api/placeholder/800/600?text=Object+Detection",
-      "/api/placeholder/800/600?text=Model+Optimization"
+      "/images/fluxstore_3.png",
+      "/images/fluxstore_2.png",
+      "/images/fluxstore_1.png",
+      "/images/fluxstore_4.png",
     ],
     challenges: [
       {
@@ -211,7 +211,7 @@ const projects: Project[] = [
       }
     ],
     codeLink: "https://github.com/arnoldchrisoduor1/Iris",
-    liveLink: null,
+    liveLink: "https://fluxstore.netlify.app/",
     featured: true,
     delay: 0.2
   },

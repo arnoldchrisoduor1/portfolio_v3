@@ -68,9 +68,10 @@ const Hero = () => {
         {/* Main Heading */}
         <motion.div variants={itemVariants}>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight mb-6">
-            Intelligence{" "}
-            <span className="text-green-500 font-medium">Engineering</span>
-          </h1>
+  Full Stack <span className="text-blue-400">Engineer</span>
+  <br />
+  <span className="text-green-500 font-medium">with ML</span>
+</h1>
         </motion.div>
 
         {/* Typewriter Section */}
@@ -103,9 +104,9 @@ const Hero = () => {
           variants={itemVariants}
         >
           {[
-            { name: "Mount Kenya University", type: "education", url: "#" },
-            { name: "BeanCart", type: "venture", url: "#" },
-            { name: "Medium", type: "writing", url: "#" },
+            { name: "FullStack", type: "education", url: "#" },
+            { name: "Anaytics", type: "venture", url: "#" },
+            { name: "ML Systems", type: "writing", url: "#" },
           ].map((item, index) => (
             <motion.a
               key={item.name}

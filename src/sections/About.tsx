@@ -55,11 +55,12 @@ const About = () => {
       icon: Code2,
       color: "from-blue-500 to-cyan-500",
       items: [
-        "TypeScript/React/Next.js",
+        "TypeScript/React/Next.js/Nest",
         "Python/FastAPI/Django",
         "Rust Systems Programming",
         "REST & GraphQL APIs",
-        "Microservices Architecture"
+        "Microservices Architecture",
+        "MongoDB, Postgres, MySQL"
       ]
     },
     {
@@ -91,8 +92,8 @@ const About = () => {
   const education = [
     {
       institution: "Mount Kenya University",
-      degree: "BSc Electronics & Computer Systems Engineering",
-      period: "2022 - Present",
+      degree: "BTech Electronics & Computer Systems Engineering",
+      period: "Ongoing",
       focus: "Artificial Intelligence & Systems Engineering"
     },
     {
@@ -104,7 +105,7 @@ const About = () => {
     {
       institution: "DataCamp",
       degree: "Data Science & Machine Learning",
-      period: "2023",
+      period: "2025",
       focus: "Statistical Analysis & ML Modeling"
     }
   ];

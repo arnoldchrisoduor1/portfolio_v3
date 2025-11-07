@@ -50,7 +50,7 @@ const Navigation = () => {
       icon: Github, 
       text: "See Code", 
       delay: 0.1,
-      href: "https://github.com/yourusername",
+      href: "https://github.com/arnoldchrisoduor1",
       color: "hover:text-gray-400"
     },
     { 
@@ -58,7 +58,7 @@ const Navigation = () => {
       icon: Mail, 
       text: "Email Me", 
       delay: 0.2,
-      href: "mailto:your.email@example.com",
+      href: "mailto:arnoldchrisoduor@gmail.com",
       color: "hover:text-red-400"
     },
     { 
@@ -66,7 +66,7 @@ const Navigation = () => {
       icon: Linkedin, 
       text: "Let's Network", 
       delay: 0.3,
-      href: "https://linkedin.com/in/yourusername",
+      href: "https://linkedin.com/in/arnoldchrisoduor",
       color: "hover:text-blue-400"
     },
   ];
