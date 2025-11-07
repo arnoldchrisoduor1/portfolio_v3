@@ -1,31 +1,86 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useMemo } from "react";
-import { 
-  X, 
-  ExternalLink, 
-  Github, 
-  Play, 
-  Server, 
-  Brain, 
-  Database,
-  TestTube,
-  Cloud,
-  Code2,
-  AlertTriangle,
-  CheckCircle2
+import {
+  X,
+  ExternalLink,
+  Github,
+  Play,
+  AlertTriangle
 } from "lucide-react";
 import Image from "next/image";
 import useUIStore from "@/store/useStore";
 
-// Enhanced project data structure
-const projects = [
+/* ============================
+   Types / Interfaces
+   ============================ */
+
+interface Technology {
+  name: string;
+  category: string;
+}
+
+interface Challenge {
+  problem: string;
+  solution: string;
+  impact: string;
+}
+
+interface ProcessPhase {
+  phase: string;
+  description: string;
+  tools: string[];
+}
+
+interface Testing {
+  approach: string;
+  tools: string[];
+  coverage?: string;
+}
+
+interface Deployment {
+  infrastructure?: string;
+  monitoring?: string;
+  cicd?: string;
+}
+
+interface Metric {
+  label: string;
+  value: string;
+}
+
+interface Project {
+  id: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  fullDescription?: string;
+  categories: string[];
+  technologies: Technology[];
+  images: string[];
+  challenges?: Challenge[];
+  process?: ProcessPhase[];
+  testing?: Testing;
+  deployment?: Deployment;
+  metrics?: Metric[];
+  codeLink?: string | null;
+  liveLink?: string | null;
+  featured?: boolean;
+  delay?: number;
+}
+
+/* ============================
+   Data (typed)
+   ============================ */
+
+const projects: Project[] = [
   {
     id: "neumoai",
     title: "NeumoAI",
     subtitle: "Pneumonia Detection from X-ray Scans",
     description: "Medical AI system for automated pneumonia detection using deep learning",
-    fullDescription: "A comprehensive medical AI platform that uses custom Convolutional Neural Networks to detect pneumonia from chest X-ray scans with 96% accuracy. The system includes real-time inference, continuous model training, and a clinician-friendly interface.",
+    fullDescription:
+      "A comprehensive medical AI platform that uses custom Convolutional Neural Networks to detect pneumonia from chest X-ray scans with 96% accuracy. The system includes real-time inference, continuous model training, and a clinician-friendly interface.",
     categories: ["AI/ML", "FullStack", "MLOps", "Healthcare"],
     technologies: [
       { name: "Python", category: "Language" },
@@ -111,7 +166,8 @@ const projects = [
     title: "Iris",
     subtitle: "Mobile Object Detection App",
     description: "Real-time object detection using custom CNNs on mobile devices",
-    fullDescription: "A cross-platform mobile application that leverages custom-trained Convolutional Neural Networks to detect and classify everyday objects in real-time using device camera.",
+    fullDescription:
+      "A cross-platform mobile application that leverages custom-trained Convolutional Neural Networks to detect and classify everyday objects in real-time using device camera.",
     categories: ["AI/ML", "Mobile", "Computer Vision"],
     technologies: [
       { name: "React Native", category: "Mobile" },
@@ -164,7 +220,8 @@ const projects = [
     title: "BeanCart",
     subtitle: "Modern E-commerce Platform",
     description: "Full-stack e-commerce solution with microservices architecture",
-    fullDescription: "A scalable e-commerce platform built with microservices architecture, featuring real-time inventory management, payment processing, and advanced analytics.",
+    fullDescription:
+      "A scalable e-commerce platform built with microservices architecture, featuring real-time inventory management, payment processing, and advanced analytics.",
     categories: ["FullStack", "Web", "Microservices"],
     technologies: [
       { name: "Angular", category: "Frontend" },
@@ -198,9 +255,13 @@ const projects = [
   }
 ];
 
-const groupByCategory = (technologies) => {
-  const grouped = {};
-  technologies.forEach(tech => {
+/* ============================
+   Helpers
+   ============================ */
+
+const groupByCategory = (technologies: Technology[]): Record<string, Technology[]> => {
+  const grouped: Record<string, Technology[]> = {};
+  technologies.forEach((tech) => {
     if (!grouped[tech.category]) {
       grouped[tech.category] = [];
     }
@@ -209,34 +270,43 @@ const groupByCategory = (technologies) => {
   return grouped;
 };
 
-const ProjectsSection = () => {
-  const { activeProjectTab, setActiveProjectTab } = useUIStore();
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+/* ============================
+   Main Component
+   ============================ */
 
-  const categories = useMemo(() => {
-    const allCategories = new Set(["all", "featured"]);
-    projects.forEach(project => {
-      project.categories.forEach(category => allCategories.add(category));
+const ProjectsSection: React.FC = () => {
+  // Typing the store result — keep shape narrow so TS is happy.
+  const { activeProjectTab, setActiveProjectTab } = useUIStore() as {
+    activeProjectTab: string;
+    setActiveProjectTab: (tab: string) => void;
+  };
+
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
+
+  const categories = useMemo<string[]>(() => {
+    const allCategories = new Set<string>(["all", "featured"]);
+    projects.forEach((project) => {
+      project.categories.forEach((category) => allCategories.add(category));
     });
     return Array.from(allCategories);
   }, []);
 
-  const filteredProjects = useMemo(() => {
+  const filteredProjects = useMemo<Project[]>(() => {
     if (activeProjectTab === "all") return projects;
-    if (activeProjectTab === "featured") return projects.filter(p => p.featured);
-    return projects.filter(project => project.categories.includes(activeProjectTab));
+    if (activeProjectTab === "featured") return projects.filter((p) => p.featured);
+    return projects.filter((project) => project.categories.includes(activeProjectTab));
   }, [activeProjectTab]);
 
-  const openProjectModal = (project) => {
+  const openProjectModal = (project: Project) => {
     setSelectedProject(project);
     setActiveImageIndex(0);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeProjectModal = () => {
     setSelectedProject(null);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   return (
@@ -256,24 +326,21 @@ const ProjectsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div
-            className="inline-flex items-center gap-3 mb-6"
-            whileHover={{ scale: 1.05 }}
-          >
+          <motion.div className="inline-flex items-center gap-3 mb-6" whileHover={{ scale: 1.05 }}>
             <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-blue-400 tracking-wide">
-              PROJECT PORTFOLIO
-            </span>
+            <span className="text-sm font-medium text-blue-400 tracking-wide">PROJECT PORTFOLIO</span>
             <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse" />
           </motion.div>
-          
+
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light mb-6">
-            Building <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Solutions</span>
+            Building{" "}
+            <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Solutions
+            </span>
           </h2>
-          
+
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            From concept to deployment, each project represents a unique challenge 
-            and an opportunity to innovate. Here's a showcase of my technical journey.
+            From concept to deployment, each project represents a unique challenge and an opportunity to innovate. Here's a showcase of my technical journey.
           </p>
         </motion.div>
 
@@ -290,9 +357,7 @@ const ProjectsSection = () => {
               key={category}
               onClick={() => setActiveProjectTab(category)}
               className={`px-6 py-3 rounded-full border text-sm font-medium transition-all duration-300 capitalize ${
-                activeProjectTab === category
-                  ? "bg-white text-black border-white"
-                  : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20"
+                activeProjectTab === category ? "bg-white text-black border-white" : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20"
               }`}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -327,14 +392,11 @@ const ProjectsSection = () => {
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  
+
                   {/* Category Badges */}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                     {project.categories.slice(0, 2).map((category) => (
-                      <span
-                        key={category}
-                        className="px-2 py-1 bg-black/70 backdrop-blur-sm rounded-full text-xs text-white"
-                      >
+                      <span key={category} className="px-2 py-1 bg-black/70 backdrop-blur-sm rounded-full text-xs text-white">
                         {category}
                       </span>
                     ))}
@@ -351,27 +413,18 @@ const ProjectsSection = () => {
 
                 {/* Project Info */}
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-                  
+                  <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
+                  <p className="text-gray-300 text-sm mb-4 line-clamp-2">{project.description}</p>
+
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech.name}
-                        className="px-2 py-1 bg-white/10 rounded-full text-xs text-gray-300"
-                      >
+                      <span key={tech.name} className="px-2 py-1 bg-white/10 rounded-full text-xs text-gray-300">
                         {tech.name}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-white/10 rounded-full text-xs text-gray-300">
-                        +{project.technologies.length - 3}
-                      </span>
+                      <span className="px-2 py-1 bg-white/10 rounded-full text-xs text-gray-300">+{project.technologies.length - 3}</span>
                     )}
                   </div>
 
@@ -401,9 +454,7 @@ const ProjectsSection = () => {
                         </a>
                       )}
                     </div>
-                    <span className="text-xs text-gray-400">
-                      View Details →
-                    </span>
+                    <span className="text-xs text-gray-400">View Details →</span>
                   </div>
                 </div>
               </div>
@@ -429,8 +480,8 @@ const ProjectsSection = () => {
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <ProjectModal 
-                project={selectedProject} 
+              <ProjectModal
+                project={selectedProject}
                 onClose={closeProjectModal}
                 activeImageIndex={activeImageIndex}
                 setActiveImageIndex={setActiveImageIndex}
@@ -443,8 +494,18 @@ const ProjectsSection = () => {
   );
 };
 
-// Project Modal Component
-const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex }) => {
+/* ============================
+   Project Modal Component
+   ============================ */
+
+interface ProjectModalProps {
+  project: Project;
+  onClose: () => void;
+  activeImageIndex: number;
+  setActiveImageIndex: (i: number) => void;
+}
+
+const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, activeImageIndex, setActiveImageIndex }) => {
   return (
     <div className="relative">
       {/* Header */}
@@ -453,10 +514,7 @@ const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex 
           <h2 className="text-3xl font-bold text-white">{project.title}</h2>
           <p className="text-gray-400">{project.subtitle}</p>
         </div>
-        <button
-          onClick={onClose}
-          className="p-2 hover:bg-white/10 rounded-full transition-colors"
-        >
+        <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">
           <X size={24} className="text-gray-400" />
         </button>
       </div>
@@ -465,30 +523,16 @@ const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex 
         {/* Image Gallery */}
         <div className="space-y-4">
           <div className="relative h-80 rounded-xl overflow-hidden">
-            <Image
-              src={project.images[activeImageIndex]}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-            />
+            <Image src={project.images[activeImageIndex]} alt={project.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw" />
           </div>
           <div className="flex gap-2 overflow-x-auto">
             {project.images.map((image, index) => (
               <button
                 key={index}
                 onClick={() => setActiveImageIndex(index)}
-                className={`relative h-20 w-32 rounded-lg overflow-hidden flex-shrink-0 ${
-                  activeImageIndex === index ? 'ring-2 ring-blue-500' : ''
-                }`}
+                className={`relative h-20 w-32 rounded-lg overflow-hidden flex-shrink-0 ${activeImageIndex === index ? "ring-2 ring-blue-500" : ""}`}
               >
-                <Image
-                  src={image}
-                  alt={`${project.title} ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="128px"
-                />
+                <Image src={image} alt={`${project.title} ${index + 1}`} fill className="object-cover" sizes="128px" />
               </button>
             ))}
           </div>
@@ -503,7 +547,7 @@ const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex 
         {/* Key Metrics */}
         {project.metrics && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {project.metrics.map((metric, index) => (
+            {project.metrics.map((metric: Metric, index: number) => (
               <motion.div
                 key={metric.label}
                 className="bg-white/5 rounded-lg p-4 text-center"
@@ -511,9 +555,7 @@ const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex 
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="text-2xl font-bold text-blue-400 mb-1">
-                  {metric.value}
-                </div>
+                <div className="text-2xl font-bold text-blue-400 mb-1">{metric.value}</div>
                 <div className="text-sm text-gray-400">{metric.label}</div>
               </motion.div>
             ))}
@@ -522,32 +564,29 @@ const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex 
 
         {/* Technologies */}
         <div>
-  <h3 className="text-2xl font-semibold text-white mb-4">Technologies</h3>
-  <div className="grid md:grid-cols-2 gap-6">
-    {Object.entries(groupByCategory(project.technologies)).map(([category, techs]) => (
-      <div key={category}>
-        <h4 className="text-lg font-medium text-gray-300 mb-3">{category}</h4>
-        <div className="flex flex-wrap gap-2">
-          {(techs as any[]).map((tech) => (
-            <span
-              key={tech.name}
-              className="px-3 py-2 bg-white/10 rounded-lg text-sm text-gray-300"
-            >
-              {tech.name}
-            </span>
-          ))}
+          <h3 className="text-2xl font-semibold text-white mb-4">Technologies</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {Object.entries(groupByCategory(project.technologies)).map(([category, techs]) => (
+              <div key={category}>
+                <h4 className="text-lg font-medium text-gray-300 mb-3">{category}</h4>
+                <div className="flex flex-wrap gap-2">
+                  {techs.map((tech: Technology) => (
+                    <span key={tech.name} className="px-3 py-2 bg-white/10 rounded-lg text-sm text-gray-300">
+                      {tech.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
-</div>
 
         {/* Challenges & Solutions */}
         {project.challenges && (
           <div>
             <h3 className="text-2xl font-semibold text-white mb-4">Challenges & Solutions</h3>
             <div className="space-y-4">
-              {project.challenges.map((challenge, index) => (
+              {project.challenges.map((challenge: Challenge, index: number) => (
                 <motion.div
                   key={index}
                   className="bg-white/5 rounded-lg p-4"
@@ -578,7 +617,7 @@ const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex 
           <div>
             <h3 className="text-2xl font-semibold text-white mb-4">Development Process</h3>
             <div className="space-y-4">
-              {project.process.map((phase, index) => (
+              {project.process.map((phase: ProcessPhase, index: number) => (
                 <motion.div
                   key={phase.phase}
                   className="flex gap-4"
@@ -587,22 +626,15 @@ const ProjectModal = ({ project, onClose, activeImageIndex, setActiveImageIndex 
                   transition={{ delay: index * 0.1 }}
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                      {index + 1}
-                    </div>
-                    {index < project.process.length - 1 && (
-                      <div className="w-0.5 h-full bg-gray-600 mt-2" />
-                    )}
+                    <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">{index + 1}</div>
+                    {index < (project.process?.length ?? 0) - 1 && <div className="w-0.5 h-full bg-gray-600 mt-2" />}
                   </div>
                   <div className="flex-1 pb-6">
                     <h4 className="font-medium text-white mb-2">{phase.phase}</h4>
                     <p className="text-gray-300 text-sm mb-2">{phase.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {phase.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="px-2 py-1 bg-white/10 rounded text-xs text-gray-400"
-                        >
+                        <span key={tool} className="px-2 py-1 bg-white/10 rounded text-xs text-gray-400">
                           {tool}
                         </span>
                       ))}

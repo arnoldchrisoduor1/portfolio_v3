@@ -219,7 +219,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {skillCategories.map((category, index) => (
                 <motion.div
                   key={category.title}
