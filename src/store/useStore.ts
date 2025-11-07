@@ -13,6 +13,9 @@ const useUIStore = create<UIStore>()(
 
       activeProjectTab: "all",
       setActiveProjectTab: (project) => set({ activeProjectTab: project }),
+
+      selectedProject: null,
+setSelectedProject: (project) => set({ selectedProject: project }),
     }),
     {
       name: "ui-store",

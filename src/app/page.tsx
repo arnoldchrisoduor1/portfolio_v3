@@ -1,19 +1,25 @@
 'use client';
 import About from '@/sections/About';
 import Hero from '@/sections/Hero';
-import Navigation from '@/sections/Navigation'
+import Navigation from '@/sections/Navigation';
+import ProjectsSection from '@/sections/ProjectsSection';
+import ContactSection from '@/sections/ContactSection';
 import React from 'react'
+import Footer from './components/Footer';
 
-const page = () => {
+const Page = () => {
   return (
     <>
-    <div className=''>
-      {/* <Navigation /> */}
-      <Hero />
-      {/* <About /> */}
+      <div className='relative'>
+        <Navigation />
+        <Hero />
+        <About />
+        <ProjectsSection />
+        <ContactSection />
+        <Footer />
       </div>
     </>
   )
 }
 
-export default page
+export default Page

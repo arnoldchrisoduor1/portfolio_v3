@@ -1,12 +1,16 @@
+// In your types.ts, add if needed:
 export interface UIStore {
-    showSocials: boolean;
-    setShowSocials: (value: boolean) => void;
-
-    activeNav: string;
-    setActiveNav: (nav: string) => void;
-
-    activeProjectTab: string;
-    setActiveProjectTab: (tab: string) => void;
+  showSocials: boolean;
+  setShowSocials: (value: boolean) => void;
+  
+  activeNav: string;
+  setActiveNav: (nav: string) => void;
+  
+  activeProjectTab: string;
+  setActiveProjectTab: (tab: string) => void;
+  
+  selectedProject: Project | null;
+  setSelectedProject: (project: Project | null) => void;
 }
 
 export interface Tool {
