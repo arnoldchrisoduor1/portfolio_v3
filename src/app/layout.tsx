@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         {/* Grain overlay */}
         <div 
-          className="fixed inset-0 -z-10 opacity-30"
+          className="fixed inset-0 -z-10 opacity-20"
           style={{
             backgroundImage: `url(${grainImage.src})`,
             backgroundRepeat: 'repeat',
