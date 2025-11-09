@@ -314,12 +314,16 @@ const About = () => {
             {[
               { name: "TypeScript", count: 12, color: "bg-blue-500" },
               { name: "Python", count: 15, color: "bg-yellow-500" },
-              { name: "AWS", count: 8, color: "bg-orange-500" },
-              { name: "React/Next", count: 10, color: "bg-cyan-500" },
-              { name: "Docker", count: 7, color: "bg-blue-400" },
-              { name: "TensorFlow", count: 6, color: "bg-orange-400" },
-              { name: "FastAPI", count: 5, color: "bg-green-500" },
               { name: "Rust", count: 4, color: "bg-red-500" },
+              { name: "AWS", count: 8, color: "bg-orange-500" },
+              { name: "React - Next - Nest", count: 10, color: "bg-cyan-500" },
+              { name: "FastAPI - Django", count: 5, color: "bg-green-500" },
+              { name: "Jest - CircleCI", count: 5, color: "bg-green-200" },
+              { name: "GitLab - Git", count: 5, color: "bg-green-900" },
+              { name: "Prometheus - Grafana", count: 5, color: "bg-red-300" },
+              { name: "Docker - MongoDB - pSQL", count: 7, color: "bg-blue-400" },
+              { name: "TensorFlow - Pytorch", count: 6, color: "bg-orange-400" },
+              { name: "Angular - Vue", count: 2, color: "bg-orange-200" },
             ].map((tech, index) => (
               <motion.div
                 key={tech.name}
