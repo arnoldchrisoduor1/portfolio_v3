@@ -217,7 +217,7 @@ export const projects: Project[] = [
     id: "Collective Poetry",
     title: "Collective Poetry",
     subtitle: "Creative Writing Social Platform powered by LLMS and Blockchain Technology",
-    description: "Social media for poets and creative writers",
+    description: "Creative Writing Social Platform powered by LLMS and Blockchain Technology",
     fullDescription: "A dedicated social platform for creative writers and poets to share their work, get feedback, and connect with other writers. Features include collaborative writing, writing prompts, and publication tools. It features blockchain integrations for proof of wonership and tokenization and aollective AI that learns from all writings on the site and that can be queried to get collective ideas of individuals on a topic",
     categories: ["FullStack", "Web", "Social Media"],
     technologies: [
