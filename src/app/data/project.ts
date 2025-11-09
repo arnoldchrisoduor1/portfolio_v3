@@ -214,19 +214,21 @@ export const projects: Project[] = [
     delay: 0.3
   },
   {
-    id: "muse",
-    title: "Muse",
-    subtitle: "Creative Writing Social Platform",
+    id: "Collective Poetry",
+    title: "Collective Poetry",
+    subtitle: "Creative Writing Social Platform powered by LLMS and Blockchain Technology",
     description: "Social media for poets and creative writers",
-    fullDescription: "A dedicated social platform for creative writers and poets to share their work, get feedback, and connect with other writers. Features include collaborative writing, writing prompts, and publication tools.",
+    fullDescription: "A dedicated social platform for creative writers and poets to share their work, get feedback, and connect with other writers. Features include collaborative writing, writing prompts, and publication tools. It features blockchain integrations for proof of wonership and tokenization and aollective AI that learns from all writings on the site and that can be queried to get collective ideas of individuals on a topic",
     categories: ["FullStack", "Web", "Social Media"],
     technologies: [
-      { name: "React", category: "Frontend" },
-      { name: "Django", category: "Backend" },
+      { name: "Next", category: "Frontend" },
+      { name: "Nest", category: "Backend" },
       { name: "PostgreSQL", category: "Database" },
       { name: "AWS S3", category: "Storage" },
       { name: "Redis", category: "Caching" },
-      { name: "Docker", category: "DevOps" }
+      { name: "Docker", category: "DevOps" },
+      { name: "Etherium", category: "Blockchain" },
+      { name: "Claude", category: "AI" }
     ],
     images: ["/images/muse_1.png", "/images/muse_2.png", "/images/muse_3.png"],
     challenges: [
