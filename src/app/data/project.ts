@@ -260,8 +260,8 @@ export const projects: Project[] = [
         tools: ["AWS S3", "Django Storages"]
       }
     ],
-    codeLink: "https://github.com/arnoldchrisoduor1/Muse",
-    liveLink: "https://muse1.netlify.app/profile",
+    codeLink: "https://github.com/arnoldchrisoduor1/Muse_v2",
+    liveLink: "https://collectivepoetry.netlify.app/",
     featured: false,
     delay: 0.4
   },
