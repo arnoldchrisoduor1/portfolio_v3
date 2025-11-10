@@ -148,6 +148,58 @@ export const projects: Project[] = [
     delay: 0.2
   },
   {
+    id: "Collective Poetry",
+    title: "Collective Poetry",
+    subtitle: "Creative Writing Social Platform powered by LLMS and Blockchain Technology",
+    description: "Creative Writing Social Platform powered by LLMS and Blockchain Technology",
+    fullDescription: "A dedicated social platform for creative writers and poets to share their work, get feedback, and connect with other writers. Features include collaborative writing, writing prompts, and publication tools. It features blockchain integrations for proof of wonership and tokenization and aollective AI that learns from all writings on the site and that can be queried to get collective ideas of individuals on a topic",
+    categories: ["FullStack", "Web", "Social Media"],
+    technologies: [
+      { name: "Next", category: "Frontend" },
+      { name: "Nest", category: "Backend" },
+      { name: "PostgreSQL", category: "Database" },
+      { name: "AWS S3", category: "Storage" },
+      { name: "Redis", category: "Caching" },
+      { name: "Docker", category: "DevOps" },
+      { name: "Etherium", category: "Blockchain" },
+      { name: "Claude", category: "AI" }
+    ],
+    images: ["/images/muse_1.png", "/images/muse_2.png", "/images/muse_3.png"],
+    challenges: [
+      {
+        problem: "Real-time collaboration features",
+        solution: "Implemented WebSocket connections for live editing",
+        impact: "Enabled multiple users to collaborate simultaneously"
+      },
+      {
+        problem: "Content moderation and plagiarism detection",
+        solution: "Built automated moderation system with similarity checking",
+        impact: "Maintained platform integrity with 99% accuracy"
+      }
+    ],
+    process: [
+      {
+        phase: "Backend Development",
+        description: "REST API with user management and content handling",
+        tools: ["Django", "Django REST Framework", "PostgreSQL"]
+      },
+      {
+        phase: "Frontend Development",
+        description: "Interactive UI with real-time features",
+        tools: ["React", "Redux", "WebSocket"]
+      },
+      {
+        phase: "File Management",
+        description: "Implemented AWS S3 for media storage",
+        tools: ["AWS S3", "Django Storages"]
+      }
+    ],
+    codeLink: "https://github.com/arnoldchrisoduor1/Muse_v2",
+    liveLink: "https://collectivepoetry.netlify.app/",
+    featured: false,
+    delay: 0.4
+  },
+  {
     id: "iris",
     title: "Iris Mobile",
     subtitle: "Plant Identification Mobile App",
@@ -212,58 +264,6 @@ export const projects: Project[] = [
     liveLink: null,
     featured: true,
     delay: 0.3
-  },
-  {
-    id: "Collective Poetry",
-    title: "Collective Poetry",
-    subtitle: "Creative Writing Social Platform powered by LLMS and Blockchain Technology",
-    description: "Creative Writing Social Platform powered by LLMS and Blockchain Technology",
-    fullDescription: "A dedicated social platform for creative writers and poets to share their work, get feedback, and connect with other writers. Features include collaborative writing, writing prompts, and publication tools. It features blockchain integrations for proof of wonership and tokenization and aollective AI that learns from all writings on the site and that can be queried to get collective ideas of individuals on a topic",
-    categories: ["FullStack", "Web", "Social Media"],
-    technologies: [
-      { name: "Next", category: "Frontend" },
-      { name: "Nest", category: "Backend" },
-      { name: "PostgreSQL", category: "Database" },
-      { name: "AWS S3", category: "Storage" },
-      { name: "Redis", category: "Caching" },
-      { name: "Docker", category: "DevOps" },
-      { name: "Etherium", category: "Blockchain" },
-      { name: "Claude", category: "AI" }
-    ],
-    images: ["/images/muse_1.png", "/images/muse_2.png", "/images/muse_3.png"],
-    challenges: [
-      {
-        problem: "Real-time collaboration features",
-        solution: "Implemented WebSocket connections for live editing",
-        impact: "Enabled multiple users to collaborate simultaneously"
-      },
-      {
-        problem: "Content moderation and plagiarism detection",
-        solution: "Built automated moderation system with similarity checking",
-        impact: "Maintained platform integrity with 99% accuracy"
-      }
-    ],
-    process: [
-      {
-        phase: "Backend Development",
-        description: "REST API with user management and content handling",
-        tools: ["Django", "Django REST Framework", "PostgreSQL"]
-      },
-      {
-        phase: "Frontend Development",
-        description: "Interactive UI with real-time features",
-        tools: ["React", "Redux", "WebSocket"]
-      },
-      {
-        phase: "File Management",
-        description: "Implemented AWS S3 for media storage",
-        tools: ["AWS S3", "Django Storages"]
-      }
-    ],
-    codeLink: "https://github.com/arnoldchrisoduor1/Muse_v2",
-    liveLink: "https://collectivepoetry.netlify.app/",
-    featured: false,
-    delay: 0.4
   },
   {
     id: "rust-space-shooter",
