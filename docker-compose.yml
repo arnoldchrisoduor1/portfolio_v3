@@ -1,0 +1,9 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-v3-arnol
+    ports:
+      - "8472:80"
+    restart: unless-stopped
