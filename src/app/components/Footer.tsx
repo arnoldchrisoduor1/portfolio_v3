@@ -9,6 +9,7 @@ import {
   Linkedin,
   Mail
 } from "lucide-react";
+import { contactInfo } from "@/app/data/contact";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -31,9 +32,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/arnoldchrisoduor1", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/arnoldchrisoduor", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:arnoldchrisoduor@gmail.com", label: "Email" }
+    { icon: Github, href: contactInfo.github, label: "GitHub" },
+    { icon: Linkedin, href: contactInfo.linkedin, label: "LinkedIn" },
+    { icon: Mail, href: `mailto:${contactInfo.email}`, label: "Email" }
   ];
 
   return (

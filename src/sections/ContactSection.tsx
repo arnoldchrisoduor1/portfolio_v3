@@ -11,6 +11,7 @@ import {
   FileText,
   CheckCircle2
 } from "lucide-react";
+import { contactInfo } from "@/app/data/contact";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -48,21 +49,21 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "your.email@example.com",
-      link: "mailto:your.email@example.com",
+      value: contactInfo.email,
+      link: `mailto:${contactInfo.email}`,
       color: "from-red-500 to-pink-500"
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "Nairobi, Kenya",
+      value: contactInfo.location,
       link: null,
       color: "from-green-500 to-emerald-500"
     },
     {
       icon: Calendar,
       title: "Availability",
-      value: "Open to opportunities",
+      value: contactInfo.availability,
       link: null,
       color: "from-blue-500 to-cyan-500"
     }
@@ -72,19 +73,19 @@ const ContactSection = () => {
     {
       icon: Github,
       name: "GitHub",
-      url: "https://github.com/yourusername",
+      url: contactInfo.github,
       color: "hover:text-gray-400"
     },
     {
       icon: Linkedin,
       name: "LinkedIn",
-      url: "https://linkedin.com/in/yourusername",
+      url: contactInfo.linkedin,
       color: "hover:text-blue-400"
     },
     {
       icon: FileText,
       name: "Resume",
-      url: "/resume.pdf",
+      url: contactInfo.resume,
       color: "hover:text-green-400"
     }
   ];

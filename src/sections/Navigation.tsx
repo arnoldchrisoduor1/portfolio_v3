@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import useUIStore from "@/store/useStore";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { contactInfo } from "@/app/data/contact";
 
 const Navigation = () => {
   const { showSocials, setShowSocials, activeNav, setActiveNav } = useUIStore();
@@ -50,7 +51,7 @@ const Navigation = () => {
       icon: Github, 
       text: "See Code", 
       delay: 0.1,
-      href: "https://github.com/arnoldchrisoduor1",
+      href: contactInfo.github,
       color: "hover:text-gray-400"
     },
     { 
@@ -58,7 +59,7 @@ const Navigation = () => {
       icon: Mail, 
       text: "Email Me", 
       delay: 0.2,
-      href: "mailto:arnoldchrisoduor@gmail.com",
+      href: `mailto:${contactInfo.email}`,
       color: "hover:text-red-400"
     },
     { 
@@ -66,7 +67,7 @@ const Navigation = () => {
       icon: Linkedin, 
       text: "Let's Network", 
       delay: 0.3,
-      href: "https://linkedin.com/in/arnoldchrisoduor",
+      href: contactInfo.linkedin,
       color: "hover:text-blue-400"
     },
   ];

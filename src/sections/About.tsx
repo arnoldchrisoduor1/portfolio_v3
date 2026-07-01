@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import React from "react";
+import Image from "next/image";
 import { 
   Cpu, 
   Database, 
@@ -11,8 +12,34 @@ import {
   Server,
   TestTube,
   BookOpen,
-  Award
+  Award,
+  Briefcase,
+  type LucideIcon,
 } from "lucide-react";
+
+type ExperienceItem =
+  | {
+      company: string;
+      role: string;
+      period: string;
+      tenure: string;
+      logo: string;
+      accentColor: string;
+      dotColor: string;
+      borderColor: string;
+      responsibilities: string[];
+    }
+  | {
+      company: string;
+      role: string;
+      period: string;
+      tenure: string;
+      icon: LucideIcon;
+      accentColor: string;
+      dotColor: string;
+      borderColor: string;
+      responsibilities: string[];
+    };
 
 const About = () => {
   const containerVariants = {
@@ -108,6 +135,46 @@ const About = () => {
       period: "2025",
       focus: "Statistical Analysis & ML Modeling"
     }
+  ];
+
+  const experience: ExperienceItem[] = [
+    {
+      company: "Unga Group PLC",
+      role: "Full Stack & IoT Engineer",
+      period: "Dec 2025 – Present",
+      tenure: "7 months",
+      logo: "/unga-group-logo.png",
+      accentColor: "from-amber-500 to-orange-500",
+      dotColor: "bg-amber-500",
+      borderColor: "border-amber-500/40",
+      responsibilities: [
+        "Design and build full-stack internal web applications used across multiple departments including Operations, Finance, and Supply Chain — translating business requirements into production-ready software.",
+        "Integrate hardware devices (cameras, sensors, edge units) with computer vision pipelines, bridging the physical and digital layers of industrial operations.",
+        "Architect and deploy end-to-end AI/IoT solutions that combine real-time sensor data, ML inference, and responsive front-end dashboards in a single cohesive system.",
+        "Manage entire projects solo from the ground up — owning everything from system design and database modelling to deployment and post-launch monitoring.",
+        "Collaborate cross-functionally with department heads, field engineers, and IT teams to gather requirements, iterate on prototypes, and deliver solutions that fit real operational workflows.",
+        "Maintain and extend existing internal software systems, performing regular code reviews, dependency updates, and performance optimisations.",
+        "Monitor production environments, triage incidents, and carry out root-cause analysis to minimise downtime across business-critical applications.",
+      ],
+    },
+    {
+      company: "Nuvemite Technologies",
+      role: "Full Stack Web Developer",
+      period: "Dec 2025 – Present",
+      tenure: "7 months",
+      icon: Briefcase,
+      accentColor: "from-indigo-500 to-purple-500",
+      dotColor: "bg-indigo-500",
+      borderColor: "border-indigo-500/40",
+      responsibilities: [
+        "Develop and ship full-stack web applications end-to-end, taking features from wireframe through to production deployment.",
+        "Build reusable front-end component libraries and scalable back-end APIs that serve as the foundation for multiple client-facing products.",
+        "Work closely with designers and product stakeholders to iterate rapidly, incorporating feedback while maintaining code quality and test coverage.",
+        "Maintain and refactor legacy codebases, improving performance, reducing technical debt, and modernising architecture where needed.",
+        "Set up and manage monitoring and alerting pipelines to track application health, surfacing anomalies before they impact end users.",
+        "Carry out systematic troubleshooting of production incidents, writing post-mortems and implementing preventive measures to improve system reliability.",
+      ],
+    },
   ];
 
   return (
@@ -294,6 +361,108 @@ const About = () => {
                 <p className="text-gray-300 text-sm">{edu.focus}</p>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Experience — Building Solutions */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-20"
+        >
+          {/* Section heading */}
+          <div className="text-center mb-16">
+            <motion.div
+              className="inline-flex items-center gap-3 mb-6"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="w-2 h-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-full animate-pulse" />
+              <span className="text-sm font-medium text-green-400 tracking-wide">Solutions Oriented</span>
+              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-green-500 rounded-full animate-pulse" />
+            </motion.div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light mb-4">
+              Work{" "}
+              <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+                Experience
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Turning complex problems into reliable, production-grade systems — across industries, tech stacks, and teams.
+            </p>
+          </div>
+
+          {/* Timeline */}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Vertical line */}
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500/60 via-indigo-500/60 to-transparent hidden sm:block" />
+
+            <div className="space-y-12">
+              {experience.map((job, index) => (
+                <motion.div
+                  key={job.company}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: index * 0.15 }}
+                  className="relative sm:pl-20"
+                >
+                  {/* Timeline dot */}
+                  <div className={`absolute left-0 top-6 w-12 h-12 rounded-full ${job.dotColor}/20 border-2 ${job.borderColor} items-center justify-center hidden sm:flex`}>
+                    {"logo" in job ? (
+                      <Image
+                        src={job.logo}
+                        alt={`${job.company} logo`}
+                        width={28}
+                        height={28}
+                        className="object-contain rounded-full bg-white h-full w-full"
+                      />
+                    ) : (
+                      <div className={`w-6 h-6 rounded-full bg-gradient-to-r ${job.accentColor} flex items-center justify-center`}>
+                        <job.icon size={13} className="text-white" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card */}
+                  <div className={`bg-white/5 backdrop-blur-sm border border-white/10 hover:${job.borderColor} rounded-2xl p-7 transition-all duration-300 hover:bg-white/8 group`}>
+                    {/* Card header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6">
+                      <div>
+                        <h4 className="text-2xl font-semibold text-white mb-1">{job.company}</h4>
+                        <p className={`text-sm font-medium bg-gradient-to-r ${job.accentColor} bg-clip-text text-transparent`}>
+                          {job.role}
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-start sm:items-end gap-1 shrink-0">
+                        <span className="text-gray-300 text-sm">{job.period}</span>
+                        <span className={`text-xs font-semibold px-3 py-1 rounded-full bg-gradient-to-r ${job.accentColor} text-white`}>
+                          {job.tenure}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Responsibilities */}
+                    <ul className="space-y-3">
+                      {job.responsibilities.map((item, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.3 + i * 0.06 }}
+                          className="flex items-start gap-3 text-sm text-gray-300 leading-relaxed"
+                        >
+                          <div className={`mt-1.5 w-1.5 h-1.5 rounded-full bg-gradient-to-r ${job.accentColor} shrink-0`} />
+                          {item}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
