@@ -12,6 +12,8 @@ containers_up() {
   fi
 
   change_record "[restarted] containers via docker compose up -d --build"
+  # Brief settle so nginx/proxy checks don't race a just-started containe
+  sleep 3
   # Show status
   ssh_cmd "cd '${DEPLOY_REMOTE_DIR}' && docker compose ps" || true
   log_step_ok "docker" "docker compose up -d --build"

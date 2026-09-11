@@ -71,4 +71,16 @@ See notes at the bottom of this file after the first provisioning pass — anyth
 
 ## Server notes from first setup
 
-_(Filled in during initial provisioning.)_
+Done on `perseonal-server` (`104.248.224.133`, Ubuntu 24.04) during the initial pass:
+
+- **Working SSH key is `~/.ssh/id_ed25519`**, not the in-repo `personal` key. The droplet’s `authorized_keys` only had the ed25519 key. `personal` / `personal.pub` are gitignored; copies live under `~/.ssh/portfolio_personal(.pub)` if you still want them.
+- First provisioning used `deploy/remote-bootstrap.sh` once (same steps as menu option 6). Safe to ignore later — option 6 is the supported path.
+- Added **1G swapfile** (`/swapfile`) because the droplet has ~1GB RAM.
+- Host stack: Docker Engine + Compose plugin, host Nginx reverse-proxy → `127.0.0.1:8472`, Certbot installed but **no cert issued** (no domain configured yet).
+- UFW enabled: 22, 80, 443.
+- Project cloned to `/opt/portfolio_v3`.
+- SSH alias `portfolio-deploy` written to local `~/.ssh/config`.
+- Site is live over **HTTP**: http://104.248.224.133/  
+  For HTTPS: point a DNS A record at the IP, set `DEPLOY_DOMAIN` (delete `deploy.config` or edit it), re-run option 6/5 and accept Certbot.
+
+Nothing permanent was done on the server that option 6 + full deploy do not already cover, aside from the one-time bootstrap script invocation above.
