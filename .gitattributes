@@ -1,0 +1,4 @@
+# Force LF for shell scripts (Windows checkouts break bash shebangs with CRLF)
+*.sh text eol=lf
+*.tpl text eol=lf
+deploy.sh text eol=lf

@@ -5,5 +5,6 @@ services:
       dockerfile: Dockerfile
     container_name: portfolio-v3-arnol
     ports:
-      - "8472:80"
+      # Bound to localhost — host Nginx reverse-proxies 80/443 → this port
+      - "127.0.0.1:8472:80"
     restart: unless-stopped

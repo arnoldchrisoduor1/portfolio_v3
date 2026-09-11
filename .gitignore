@@ -23,6 +23,19 @@
 .DS_Store
 *.pem
 
+# SSH keys (keep out of the repo — use ~/.ssh/)
+/personal
+/personal.pub
+*.pub
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Deploy tooling (local secrets / logs)
+/deploy.config
+/deploy.log
+
 # debug
 npm-debug.log*
 yarn-debug.log*
