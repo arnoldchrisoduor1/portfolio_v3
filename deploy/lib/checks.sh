@@ -105,8 +105,8 @@ checks_ssl() {
         # Need email for certbot
         local email
         email="$(ui_ask "Email for Let's Encrypt" "arnoldchrisoduor@gmail.com")"
-        if ssh_cmd "certbot --nginx -d '${DEPLOY_DOMAIN}' --non-interactive --agree-tos -m '${email}' --redirect"; then
-          change_record "[issued]    SSL cert for ${DEPLOY_DOMAIN} (certbot)"
+        if ssh_cmd "certbot --nginx -d '${DEPLOY_DOMAIN}' -d 'www.${DEPLOY_DOMAIN}' --non-interactive --agree-tos -m '${email}' --redirect"; then
+          change_record "[issued]    SSL cert for ${DEPLOY_DOMAIN} + www (certbot)"
           log_step_ok "ssl" "SSL check" "issued"
         else
           log_step_fail "ssl" "SSL check" "certbot failed"

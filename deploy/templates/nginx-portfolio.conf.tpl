@@ -4,6 +4,7 @@
 server {
     listen 80;
     listen [::]:80;
+    # __DOMAIN__ may be "example.com www.example.com" (space-separated)
     server_name __DOMAIN__;
 
     location / {

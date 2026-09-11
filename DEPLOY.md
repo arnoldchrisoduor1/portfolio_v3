@@ -80,7 +80,6 @@ Done on `perseonal-server` (`104.248.224.133`, Ubuntu 24.04) during the initial 
 - UFW enabled: 22, 80, 443.
 - Project cloned to `/opt/portfolio_v3`.
 - SSH alias `portfolio-deploy` written to local `~/.ssh/config`.
-- Site is live over **HTTP**: http://104.248.224.133/  
-  For HTTPS: point a DNS A record at the IP, set `DEPLOY_DOMAIN` (delete `deploy.config` or edit it), re-run option 6/5 and accept Certbot.
-
-Nothing permanent was done on the server that option 6 + full deploy do not already cover, aside from the one-time bootstrap script invocation above.
+- Domain **oduor-arnold.com** (+ www) pointed at the droplet; Nginx `server_name` updated; Let's Encrypt cert issued via certbot (expires ~2026-12-10, auto-renew enabled).
+- Live URLs: https://oduor-arnold.com and https://www.oduor-arnold.com (HTTP → HTTPS redirect).
+- `deploy.config` uses `DEPLOY_DOMAIN=oduor-arnold.com` and `DEPLOY_PUBLIC_URL=https://oduor-arnold.com`.

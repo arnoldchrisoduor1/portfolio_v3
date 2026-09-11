@@ -121,8 +121,8 @@ provision_server() {
     if ui_confirm "Issue Let's Encrypt cert for ${DEPLOY_DOMAIN} now? (DNS must already point here)" N; then
       local email
       email="$(ui_ask "Email for Let's Encrypt" "arnoldchrisoduor@gmail.com")"
-      if ssh_cmd "certbot --nginx -d '${DEPLOY_DOMAIN}' --non-interactive --agree-tos -m '${email}' --redirect"; then
-        change_record "[issued]    SSL cert for ${DEPLOY_DOMAIN}"
+      if ssh_cmd "certbot --nginx -d '${DEPLOY_DOMAIN}' -d 'www.${DEPLOY_DOMAIN}' --non-interactive --agree-tos -m '${email}' --redirect"; then
+        change_record "[issued]    SSL cert for ${DEPLOY_DOMAIN} + www"
       else
         log_warn "Certbot failed — site remains on HTTP. Re-run after DNS propagates."
       fi
@@ -139,6 +139,9 @@ provision_nginx_site() {
   # If no domain, also accept the raw IP as server_name
   if [[ -z "${DEPLOY_DOMAIN:-}" ]]; then
     server_name="${DEPLOY_HOST}"
+  else
+    # Include www companion by default
+    server_name="${DEPLOY_DOMAIN} www.${DEPLOY_DOMAIN} ${DEPLOY_HOST}"
   fi
 
   local tpl="${DEPLOY_ROOT}/deploy/templates/nginx-portfolio.conf.tpl"
