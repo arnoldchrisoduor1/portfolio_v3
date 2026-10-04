@@ -72,7 +72,7 @@ export const ProjectsSection: React.FC = () => {
           </h2>
 
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            From concept to deployment, each project represents a unique challenge and an opportunity to innovate. Here's a showcase of my technical journey.
+            Visitor management, contract scouting, model hosting, and avionics phase 1, followed by earlier web and machine-learning work.
           </p>
         </motion.div>
 

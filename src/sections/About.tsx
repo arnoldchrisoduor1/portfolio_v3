@@ -4,16 +4,12 @@ import React from "react";
 import Image from "next/image";
 import { 
   Cpu, 
-  Database, 
-  Cloud, 
   Code2, 
   Brain, 
-  BarChart3,
   Server,
-  TestTube,
   BookOpen,
-  Award,
   Briefcase,
+  Building2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -41,6 +37,17 @@ type ExperienceItem =
       responsibilities: string[];
     };
 
+function tenureSince(start: string): string {
+  const [year, month = 1] = start.split("-").map(Number);
+  const now = new Date();
+  const months = (now.getFullYear() - year) * 12 + (now.getMonth() + 1 - month);
+  if (months < 12) return `${Math.max(months, 1)} months`;
+  const years = Math.floor(months / 12);
+  const remainder = months % 12;
+  const yearLabel = years === 1 ? "1 year" : `${years} years`;
+  return remainder === 0 ? yearLabel : `${yearLabel} ${remainder} mo`;
+}
+
 const About = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -66,52 +73,43 @@ const About = () => {
 
   const skillCategories = [
     {
-      title: "AI & Machine Learning",
-      icon: Brain,
-      color: "from-purple-500 to-pink-500",
-      items: [
-        "Deep Neural Networks",
-        "Computer Vision",
-        "Statistical Analysis",
-        "Data Visualization",
-        "Model Deployment"
-      ]
-    },
-    {
-      title: "Full Stack Development",
+      title: "Languages",
       icon: Code2,
       color: "from-blue-500 to-cyan-500",
       items: [
-        "TypeScript/React/Next.js/Nest",
-        "Python/FastAPI/Django",
-        "Rust Systems Programming",
-        "REST & GraphQL APIs",
-        "Microservices Architecture",
-        "MongoDB, Postgres, MySQL"
+        "Go, Rust, Elixir",
+        "TypeScript, Python, SQL",
+        "C/C++, Java"
       ]
     },
     {
-      title: "Cloud & DevOps",
-      icon: Cloud,
+      title: "Backend & Web",
+      icon: Server,
+      color: "from-cyan-500 to-blue-500",
+      items: [
+        "Go (Fiber, GORM), NestJS, FastAPI, Laravel",
+        "Next.js, React, REST APIs",
+        "PostgreSQL, MySQL, Redis, Flyway"
+      ]
+    },
+    {
+      title: "ML & Automation",
+      icon: Brain,
+      color: "from-purple-500 to-pink-500",
+      items: [
+        "TensorFlow, Keras, scikit-learn, Pandas, NumPy",
+        "CNNs, autoencoders, face recognition",
+        "n8n, OpenRouter, SAP RFC, SAM.gov"
+      ]
+    },
+    {
+      title: "DevOps & Hardware",
+      icon: Cpu,
       color: "from-orange-500 to-red-500",
       items: [
-        "AWS Infrastructure",
-        "Docker & Containerization",
-        "Serverless Architecture",
-        "Prometheus & Grafana",
-        "CI/CD Pipelines"
-      ]
-    },
-    {
-      title: "Data Engineering",
-      icon: Database,
-      color: "from-green-500 to-emerald-500",
-      items: [
-        "Data Analytics",
-        "Jupyter Notebooks",
-        "ETL Pipelines",
-        "Statistical Modeling",
-        "Dashboard Creation"
+        "Docker Compose, Nginx, Caddy, Certbot",
+        "DigitalOcean, AWS Lightsail, GitHub Actions",
+        "STM32/ESP32, Dahua device SDK, Playwright"
       ]
     }
   ];
@@ -119,66 +117,77 @@ const About = () => {
   const education = [
     {
       institution: "Mount Kenya University",
-      degree: "BTech Electronics & Computer Systems Engineering",
-      period: "Ongoing",
-      focus: "Artificial Intelligence & Systems Engineering"
+      degree: "BTech Electronics and Computer Systems",
+      period: "Nairobi",
+      focus: "Coursework: Artificial Intelligence, Algorithms and Data Structures, System Design, Compiler Design, Network Administration, Power Electronics"
     },
     {
-      institution: "ALX Software Engineering",
-      degree: "Software Engineering Certification",
-      period: "2023",
-      focus: "Full Stack Development & System Design"
+      institution: "Certifications",
+      degree: "DataCamp Data Scientist Associate",
+      period: "AWS Solutions Architect Associate",
+      focus: "Data science practice, and cloud architecture on AWS"
     },
     {
-      institution: "DataCamp",
-      degree: "Data Science & Machine Learning",
-      period: "2025",
-      focus: "Statistical Analysis & ML Modeling"
+      institution: "Self-directed",
+      degree: "Electronics and mathematics for ML",
+      period: "Independent study",
+      focus: "Electronics principles (Schuler), linear algebra, statistics, and calculus for machine learning"
     }
   ];
 
   const experience: ExperienceItem[] = [
     {
       company: "Unga Group PLC",
-      role: "Full Stack & IoT Engineer",
+      role: "Full Stack Engineer (Contract)",
       period: "Dec 2025 – Present",
-      tenure: "7 months",
+      tenure: tenureSince("2025-12"),
       logo: "/unga-group-logo.png",
       accentColor: "from-amber-500 to-orange-500",
       dotColor: "bg-amber-500",
       borderColor: "border-amber-500/40",
       responsibilities: [
-        "Design and build full-stack internal web applications used across multiple departments including Operations, Finance, and Supply Chain — translating business requirements into production-ready software.",
-        "Integrate hardware devices (cameras, sensors, edge units) with computer vision pipelines, bridging the physical and digital layers of industrial operations.",
-        "Architect and deploy end-to-end AI/IoT solutions that combine real-time sensor data, ML inference, and responsive front-end dashboards in a single cohesive system.",
-        "Manage entire projects solo from the ground up — owning everything from system design and database modelling to deployment and post-launch monitoring.",
-        "Collaborate cross-functionally with department heads, field engineers, and IT teams to gather requirements, iterate on prototypes, and deliver solutions that fit real operational workflows.",
-        "Maintain and extend existing internal software systems, performing regular code reviews, dependency updates, and performance optimisations.",
-        "Monitor production environments, triage incidents, and carry out root-cause analysis to minimise downtime across business-critical applications.",
+        "Built and maintained Point of Entry, a biometric access-control platform (Go/Fiber, Next.js, PostgreSQL, Docker) for 2,000 users across 5 sites. It talks to Dahua access-control devices through their SDK, so enrollment, device sync, and access events live in one system.",
+        "Develop and maintain Unga FugoSmart, a Java mobile app, and built its web version from scratch so the same workflows are available beyond the mobile audience.",
+        "Work with HR, Procurement, and Logistics to gather requirements and keep the software each department uses aligned with how they actually work.",
+        "Developed and integrated face recognition and other machine-learning features into the access-control platform and the existing factory-operations software.",
+        "Maintained a Laravel vendor-onboarding portal connected to SAP through RFC middleware, syncing vendors, purchase orders, and invoices so procurement data stays consistent.",
+        "Monitored the logistics application in production, including database locking, DNS resolution faults, and mail-delivery failures.",
+        "Run separate production and test Docker environments with Flyway migrations, a systemd watchdog for automatic recovery, and email notifications, so a release is exercised before it reaches production.",
       ],
     },
     {
       company: "Nuvemite Technologies",
-      role: "Full Stack Web Developer",
+      role: "Forward Deployment Engineer",
       period: "Dec 2025 – Present",
-      tenure: "7 months",
+      tenure: tenureSince("2025-12"),
       icon: Briefcase,
       accentColor: "from-indigo-500 to-purple-500",
       dotColor: "bg-indigo-500",
       borderColor: "border-indigo-500/40",
       responsibilities: [
-        "Develop and ship full-stack web applications end-to-end, taking features from wireframe through to production deployment.",
-        "Build reusable front-end component libraries and scalable back-end APIs that serve as the foundation for multiple client-facing products.",
-        "Work closely with designers and product stakeholders to iterate rapidly, incorporating feedback while maintaining code quality and test coverage.",
-        "Maintain and refactor legacy codebases, improving performance, reducing technical debt, and modernising architecture where needed.",
-        "Set up and manage monitoring and alerting pipelines to track application health, surfacing anomalies before they impact end users.",
-        "Carry out systematic troubleshooting of production incidents, writing post-mortems and implementing preventive measures to improve system reliability.",
+        "Deliver end-to-end software for large organizations, from requirements through deployment and ongoing support. This role started in the same month as the Unga contract because the two companies work together.",
+        "Deploy client systems on DigitalOcean and AWS Lightsail with Docker Compose, Nginx, and scripted deploys.",
+      ],
+    },
+    {
+      company: "Digital Wilderness Labs",
+      role: "Co-Founder",
+      period: "2023 – Present",
+      tenure: "Since 2023",
+      icon: Building2,
+      accentColor: "from-emerald-500 to-teal-500",
+      dotColor: "bg-emerald-500",
+      borderColor: "border-emerald-500/40",
+      responsibilities: [
+        "Software and hardware studio and applied research lab. Designed and shipped multi-tenant SaaS products, including a visitor management system and barber, wellness, and laundry POS platforms, with Pesapal/M-Pesa payments and SMS, WhatsApp, and email notifications.",
+        "Built an LLM-powered contract-scouting agent for a US-based holding company. The pipeline is described under Projects.",
+        "Deploy and operate several client applications on shared cloud servers, each in its own Docker stack.",
       ],
     },
   ];
 
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="about" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 -z-10">
         <motion.div
@@ -229,13 +238,13 @@ const About = () => {
           </motion.div>
           
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light mb-6">
-            Engineering <span className="text-gradient bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Intelligent</span> Systems
+            Production <span className="text-gradient bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">systems</span> and hardware
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Electronics & Computer Systems Engineer specializing in AI, scalable architectures, 
-            and data-driven solutions. Bridging the gap between theoretical mathematics and 
-            practical software engineering.
+            Full-stack and automation engineer working in Go, TypeScript, and Python.
+            Multi-tenant SaaS, biometric and IoT integrations, and LLM-driven workflows,
+            with a background in electronics and embedded systems.
           </p>
         </motion.div>
 
@@ -252,29 +261,33 @@ const About = () => {
             <motion.div variants={itemVariants}>
               <h3 className="text-2xl font-light mb-4 text-green-400">Background</h3>
               <p className="text-gray-300 leading-relaxed">
-                As an Electronics and Computer Systems Engineering student, I combine 
-                strong mathematical foundations in <span className="text-blue-400">calculus</span> and{" "}
-                <span className="text-purple-400">linear algebra</span> with practical software engineering 
-                to build intelligent, scalable systems.
+                BTech in Electronics and Computer Systems from Mount Kenya University, Nairobi.
+                I use that hardware background on biometric devices, analog signal conditioning,
+                and STM32/ESP32 firmware, and ship the software around them in{" "}
+                <span className="text-blue-400">Go</span>,{" "}
+                <span className="text-purple-400">TypeScript</span>, and Python.
               </p>
             </motion.div>
 
             <motion.div variants={itemVariants}>
               <h3 className="text-2xl font-light mb-4 text-blue-400">Focus Areas</h3>
               <p className="text-gray-300 leading-relaxed">
-                My passion lies in creating <span className="text-green-400">data-driven applications</span>, 
-                deploying <span className="text-pink-400">machine learning models</span>, and architecting{" "}
-                <span className="text-orange-400">high-performance systems</span> using modern technologies 
-                across the entire stack.
+                Access control that stays in sync with{" "}
+                <span className="text-green-400">Dahua devices</span>, multi-tenant products for
+                visitors, barbers, wellness, and laundry, and{" "}
+                <span className="text-pink-400">LLM pipelines</span> that turn a manual research
+                task into a daily digest. Machine learning shows up where the product needs it:
+                CNNs, autoencoders, and face recognition.
               </p>
             </motion.div>
 
             <motion.div variants={itemVariants}>
               <h3 className="text-2xl font-light mb-4 text-purple-400">Approach</h3>
               <p className="text-gray-300 leading-relaxed">
-                I believe in <span className="text-cyan-400">test-driven development</span>,{" "}
-                <span className="text-yellow-400">continuous integration</span>, and building 
-                systems that are not just functional, but <span className="text-green-400">resilient and maintainable</span>.
+                Separate test and production Docker environments,{" "}
+                <span className="text-cyan-400">Flyway</span> migrations, Go integration tests,
+                and Playwright end-to-end coverage. Releases are exercised before they reach
+                production, and a systemd watchdog restarts a failed service on its own.
               </p>
             </motion.div>
           </motion.div>
@@ -389,7 +402,7 @@ const About = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Turning complex problems into reliable, production-grade systems — across industries, tech stacks, and teams.
+              Unga Group and Nuvemite started in December 2025 and run in parallel because the companies work together. Digital Wilderness Labs is the studio behind several of the products.
             </p>
           </div>
 
@@ -475,24 +488,24 @@ const About = () => {
           className="bg-gradient-to-r from-green-500/10 via-blue-500/10 to-purple-500/10 rounded-3xl p-8 border border-white/10"
         >
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-light mb-4">Technical Arsenal</h3>
-            <p className="text-gray-400">Technologies I use to bring ideas to life</p>
+            <h3 className="text-3xl font-light mb-4">Technical stack</h3>
+            <p className="text-gray-400">Tools used on the systems above</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { name: "TypeScript", count: 12, color: "bg-blue-500" },
-              { name: "Python", count: 15, color: "bg-yellow-500" },
-              { name: "Rust", count: 4, color: "bg-red-500" },
-              { name: "AWS", count: 8, color: "bg-orange-500" },
-              { name: "React - Next - Nest", count: 10, color: "bg-cyan-500" },
-              { name: "FastAPI - Django", count: 5, color: "bg-green-500" },
-              { name: "Jest - CircleCI", count: 5, color: "bg-green-200" },
-              { name: "GitLab - Git", count: 5, color: "bg-green-900" },
-              { name: "Prometheus - Grafana", count: 5, color: "bg-red-300" },
-              { name: "Docker - MongoDB - pSQL", count: 7, color: "bg-blue-400" },
-              { name: "TensorFlow - Pytorch", count: 6, color: "bg-orange-400" },
-              { name: "Angular - Vue", count: 2, color: "bg-orange-200" },
+              { name: "Go", detail: "Fiber, GORM", color: "bg-cyan-500" },
+              { name: "TypeScript", detail: "Next.js, React, NestJS", color: "bg-blue-500" },
+              { name: "Python", detail: "FastAPI, TensorFlow", color: "bg-yellow-500" },
+              { name: "Java", detail: "FugoSmart mobile", color: "bg-orange-500" },
+              { name: "PostgreSQL", detail: "Flyway, Redis, MySQL", color: "bg-blue-400" },
+              { name: "Docker", detail: "Compose, Nginx, Caddy", color: "bg-sky-400" },
+              { name: "Cloud", detail: "DigitalOcean, Lightsail", color: "bg-orange-400" },
+              { name: "Automation", detail: "n8n, SAP RFC, M-Pesa", color: "bg-emerald-400" },
+              { name: "Testing", detail: "Playwright, Go, Jest", color: "bg-green-300" },
+              { name: "ML", detail: "Keras, CNNs, OpenRouter", color: "bg-purple-400" },
+              { name: "Embedded", detail: "STM32, ESP32, Proteus", color: "bg-red-400" },
+              { name: "Systems", detail: "Rust, Elixir, C/C++", color: "bg-rose-300" },
             ].map((tech, index) => (
               <motion.div
                 key={tech.name}
@@ -505,7 +518,7 @@ const About = () => {
               >
                 <div className={`w-3 h-3 ${tech.color} rounded-full mx-auto mb-2`} />
                 <h4 className="font-medium text-white mb-1">{tech.name}</h4>
-                <p className="text-gray-400 text-sm">{tech.count}+ projects</p>
+                <p className="text-gray-400 text-sm">{tech.detail}</p>
               </motion.div>
             ))}
           </div>

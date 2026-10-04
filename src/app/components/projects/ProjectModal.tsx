@@ -43,6 +43,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
       <div className="p-6 space-y-8">
         {/* Image Gallery */}
+        {project.images.length > 0 && (
         <div className="space-y-4">
           <div className="relative h-80 rounded-xl overflow-hidden">
             <Image 
@@ -73,6 +74,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             ))}
           </div>
         </div>
+        )}
 
         {/* Project Description */}
         <div>

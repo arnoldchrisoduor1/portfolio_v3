@@ -2,11 +2,136 @@ import { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
+    id: "point-of-entry-vms",
+    title: "Visitor Management System",
+    subtitle: "Multi-tenant SaaS",
+    description: "Config-driven visitor platform for corporate, hospital, and church sites, with tenant isolation, RBAC, and approval workflows.",
+    fullDescription: "A Go and Next.js platform on PostgreSQL that serves corporate, hospital, and church deployments from configuration rather than a separate codebase per vertical. Tenants are isolated, with role-based access and approval workflows. Notifications go out through Resend and Africa's Talking (SMS and WhatsApp), with a compliance layer, printable QR badges, and a kiosk mode. Covered by Go integration tests and 25 Playwright end-to-end tests.",
+    categories: ["SaaS", "FullStack", "Go"],
+    technologies: [
+      { name: "Go", category: "Language" },
+      { name: "Next.js", category: "Frontend" },
+      { name: "PostgreSQL", category: "Database" },
+      { name: "Playwright", category: "Testing" },
+      { name: "Resend", category: "Notifications" },
+      { name: "Africa's Talking", category: "Notifications" }
+    ],
+    images: [],
+    challenges: [
+      {
+        problem: "Corporate, hospital, and church sites needed the same product without a fork per industry",
+        solution: "Kept vertical behavior in tenant configuration: isolation, RBAC, and approval workflows, with no industry-specific code paths",
+        impact: "One platform covers those three deployments"
+      },
+      {
+        problem: "Visitors needed a badge and a record that staff could trust at the door",
+        solution: "Added printable QR badges, kiosk mode, and notification delivery with a compliance layer",
+        impact: "Check-in can run on a kiosk and notify hosts over email, SMS, or WhatsApp"
+      }
+    ],
+    testing: {
+      approach: "Go integration tests around tenant isolation and workflows, plus Playwright for the visitor paths",
+      tools: ["Go integration tests", "Playwright"],
+      coverage: "25 Playwright end-to-end tests"
+    },
+    metrics: [
+      { label: "E2E tests", value: "25 Playwright" },
+      { label: "Deployments", value: "Corporate, hospital, church" }
+    ],
+    codeLink: null,
+    liveLink: null,
+    featured: true,
+    delay: 0.1
+  },
+  {
+    id: "contract-scout",
+    title: "Contract Scout Agent",
+    subtitle: "LLM workflow automation",
+    description: "Daily pipeline that screens SAM.gov contract listings with an LLM and emails a ranked digest.",
+    fullDescription: "A daily pipeline for a US-based holding company. It pulls federal contract listings from the SAM.gov API, screens them against business rules with an LLM via OpenRouter, stores the results in PostgreSQL, and emails a ranked digest. Built with n8n and Python. It replaces a 16-hour manual bid-scouting pass with that daily email.",
+    categories: ["Automation", "LLM", "Python"],
+    technologies: [
+      { name: "n8n", category: "Automation" },
+      { name: "Python", category: "Language" },
+      { name: "PostgreSQL", category: "Database" },
+      { name: "OpenRouter", category: "LLM" },
+      { name: "SAM.gov API", category: "Integration" }
+    ],
+    images: [],
+    challenges: [
+      {
+        problem: "Bid scouting took a person about 16 hours of manual review",
+        solution: "Scheduled pull from SAM.gov, LLM screening against the company's rules, and a ranked email",
+        impact: "The review arrives as a daily digest instead of a 16-hour pass"
+      }
+    ],
+    metrics: [
+      { label: "Manual scouting", value: "16 hours" },
+      { label: "Replacement", value: "Daily email" }
+    ],
+    codeLink: null,
+    liveLink: null,
+    featured: true,
+    delay: 0.15
+  },
+  {
+    id: "bluewave",
+    title: "BlueWave",
+    subtitle: "SaaS for ML engineers",
+    description: "Host model endpoints, test CNNs and autoencoders by uploading images, and score models with standard metrics.",
+    fullDescription: "A Python service for machine-learning engineers. Developers host model endpoints, upload images to exercise CNNs and autoencoders, and evaluate models with standard metrics. The API is FastAPI, with TensorFlow and Keras for the models.",
+    categories: ["AI/ML", "Python", "SaaS"],
+    technologies: [
+      { name: "Python", category: "Language" },
+      { name: "TensorFlow", category: "ML Framework" },
+      { name: "Keras", category: "ML Framework" },
+      { name: "FastAPI", category: "Backend" }
+    ],
+    images: [],
+    challenges: [
+      {
+        problem: "Trying a CNN or autoencoder meant standing up a one-off notebook and a one-off server",
+        solution: "A FastAPI host where an engineer uploads images, hits a model endpoint, and reads standard evaluation metrics",
+        impact: "Model checks happen against a hosted endpoint instead of a local-only script"
+      }
+    ],
+    codeLink: null,
+    liveLink: null,
+    featured: true,
+    delay: 0.2
+  },
+  {
+    id: "avionics-phase-1",
+    title: "Avionics Phase 1",
+    subtitle: "Signal conditioning, firmware, and sensor fusion",
+    description: "Op-amp signal conditioning, bare-metal STM32/ESP32 firmware, and an Extended Kalman Filter in Python.",
+    fullDescription: "Phase 1 of an avionics stack: analog front-end work with op-amps for signal conditioning, bare-metal firmware on STM32 and ESP32, and an Extended Kalman Filter written in Python to fuse the sensor streams.",
+    categories: ["Embedded", "Electronics", "Python"],
+    technologies: [
+      { name: "STM32", category: "Firmware" },
+      { name: "ESP32", category: "Firmware" },
+      { name: "Python", category: "Language" },
+      { name: "Op-amps", category: "Electronics" }
+    ],
+    images: [],
+    challenges: [
+      {
+        problem: "Raw sensor signals were not in a form the firmware or the fusion step could trust",
+        solution: "Conditioned the signals with op-amps, read them from bare-metal STM32 and ESP32 firmware, and fused them with an Extended Kalman Filter in Python",
+        impact: "The analog front end, the firmware, and the fusion step are one pipeline"
+      }
+    ],
+    codeLink: null,
+    liveLink: null,
+    featured: true,
+    delay: 0.25
+  },
+  {
     id: "neumoai",
     title: "NeumoAI",
     subtitle: "Pneumonia Detection from X-ray Scans",
     description: "Medical AI system for automated pneumonia detection using deep learning",
-    fullDescription: "A comprehensive medical AI platform that uses custom Convolutional Neural Networks to detect pneumonia from chest X-ray scans with 96% accuracy. The system includes real-time inference, continuous model training, and a clinician-friendly interface.",
+    fullDescription: "A convolutional network that flags pneumonia on chest X-rays, served from FastAPI with a Next.js review screen. Training used data augmentation and transfer learning.",
     categories: ["AI/ML", "FullStack", "MLOps", "Healthcare"],
     technologies: [
       { name: "Python", category: "Language" },
@@ -30,9 +155,9 @@ export const projects: Project[] = [
         impact: "Reduced inference time from 2s to 200ms"
       },
       {
-        problem: "Medical regulatory compliance",
-        solution: "Built explainability features and confidence scoring",
-        impact: "Increased clinician trust and adoption"
+        problem: "A reviewer needed to see why the model flagged a scan",
+        solution: "Added a confidence score next to each prediction on the review screen",
+        impact: "The result is a score a person can read, not only a label"
       }
     ],
     process: [
@@ -73,14 +198,12 @@ export const projects: Project[] = [
       cicd: "GitHub Actions with automated testing and deployment"
     },
     metrics: [
-      { label: "Accuracy", value: "96%" },
-      { label: "Inference Time", value: "200ms" },
-      { label: "Uptime", value: "99.9%" },
-      { label: "Users", value: "500+" }
+      { label: "Held-out accuracy", value: "96%" },
+      { label: "Inference", value: "200ms" }
     ],
     codeLink: "https://github.com/arnoldchrisoduor1/NeumoAI",
     liveLink: "https://neumoai.netlify.app/",
-    featured: true,
+    featured: false,
     delay: 0.1
   },
   {
@@ -144,7 +267,7 @@ export const projects: Project[] = [
     ],
     codeLink: "https://github.com/arnoldchrisoduor1/FluxStore",
     liveLink: "https://fluxstore.netlify.app/",
-    featured: true,
+    featured: false,
     delay: 0.2
   },
   {
@@ -262,7 +385,7 @@ export const projects: Project[] = [
     },
     codeLink: "https://github.com/arnoldchrisoduor1/Iris",
     liveLink: null,
-    featured: true,
+    featured: false,
     delay: 0.3
   },
   {
@@ -442,7 +565,7 @@ export const projects: Project[] = [
       {
         problem: "High traffic scalability",
         solution: "Microservices with load balancing and caching",
-        impact: "Handled 10k+ concurrent users"
+        impact: "Inventory, payments, and the storefront run as separate services"
       },
       {
         problem: "Payment integration complexity",
@@ -452,7 +575,7 @@ export const projects: Project[] = [
     ],
     codeLink: "https://github.com/arnoldchrisoduor1/BeanCart",
     liveLink: "https://app.beancart.shop",
-    featured: true,
+    featured: false,
     delay: 0.8
   },
   {

@@ -1,7 +1,6 @@
 "use client";
 import type { Metadata } from "next";
 import "./globals.css";
-import Navigation from "@/sections/Navigation";
 import grainImage from "../../public/images/grain.jpg";
 
 // export const metadata: Metadata = {
@@ -31,7 +30,6 @@ export default function RootLayout({
         
         {/* Main content */}
         <div className="relative z-0">
-          <Navigation />
           {children}
         </div>
       </body>

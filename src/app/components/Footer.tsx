@@ -60,9 +60,8 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-md">
-              Building intelligent systems and scalable solutions. 
-              Passionate about AI, data engineering, and creating 
-              technology that makes a difference.
+              Full-stack and automation engineer in Nairobi. Production systems in Go,
+              TypeScript, and Python: biometric access, multi-tenant SaaS, and LLM workflows.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (

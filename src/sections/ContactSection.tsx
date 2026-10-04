@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { 
   Mail, 
+  Phone,
   Send, 
   MapPin, 
   Calendar,
@@ -52,6 +53,13 @@ const ContactSection = () => {
       value: contactInfo.email,
       link: `mailto:${contactInfo.email}`,
       color: "from-red-500 to-pink-500"
+    },
+    {
+      icon: Phone,
+      title: "Phone",
+      value: contactInfo.phone,
+      link: `tel:+254791165995`,
+      color: "from-amber-500 to-orange-500"
     },
     {
       icon: MapPin,
@@ -146,8 +154,7 @@ const ContactSection = () => {
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Ready to bring your next project to life? Whether it's AI, full-stack development, 
-            or data engineering, I'm here to help turn your ideas into reality.
+            Based in Nairobi, working remotely with distributed teams. Email, phone, or LinkedIn.
           </p>
         </motion.div>
 

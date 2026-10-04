@@ -6,11 +6,11 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 const Hero = () => {
   const [text] = useTypewriter({
     words: [
-      "Systems Engineering Student",
-      "Full Stack Developer", 
-      "ML Engineer",
-      "Technical Writer",
-      "Problem Solver"
+      "Full-stack Engineer",
+      "Automation Engineer",
+      "Biometric & IoT Systems",
+      "LLM Workflow Automation",
+      "Based in Nairobi"
     ],
     loop: true,
     delaySpeed: 2000,
@@ -40,7 +40,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
@@ -61,17 +61,17 @@ const Hero = () => {
         >
           <div className="w-2 h-2 bg-green-500 rounded-full animate-ping" />
           <span className="text-sm font-light tracking-wide">
-            Currently building intelligent systems
+            Unga Group and Nuvemite, working together since Dec 2025
           </span>
         </motion.div>
 
         {/* Main Heading */}
         <motion.div variants={itemVariants}>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight mb-6">
-  Full Stack <span className="text-blue-400">Engineer</span>
-  <br />
-  <span className="text-green-500 font-medium">with ML</span>
-</h1>
+            Arnold Chris <span className="text-blue-400">Oduor</span>
+            <br />
+            <span className="text-green-500 font-medium">Full-stack & automation</span>
+          </h1>
         </motion.div>
 
         {/* Typewriter Section */}
@@ -91,10 +91,12 @@ const Hero = () => {
           variants={itemVariants}
         >
           <p>
-            Building the future of intelligent systems through{" "}
-            <span className="text-green-400 font-medium">machine learning</span>,{" "}
-            <span className="text-blue-400 font-medium">scalable architecture</span>, and{" "}
-            <span className="text-purple-400 font-medium">cutting-edge research</span>.
+            Production systems in{" "}
+            <span className="text-green-400 font-medium">Go, TypeScript, and Python</span>
+            : multi-tenant SaaS, biometric and IoT hardware, and{" "}
+            <span className="text-blue-400 font-medium">LLM workflow automation</span>.
+            Hands-on machine learning, face recognition, and embedded electronics.
+            Remote from Nairobi.
           </p>
         </motion.div>
 
@@ -104,9 +106,9 @@ const Hero = () => {
           variants={itemVariants}
         >
           {[
-            { name: "FullStack", type: "education", url: "#" },
-            { name: "Anaytics", type: "venture", url: "#" },
-            { name: "ML Systems", type: "writing", url: "#" },
+            { name: "Experience", type: "education", url: "#about" },
+            { name: "Projects", type: "venture", url: "#projects" },
+            { name: "Contact", type: "writing", url: "#contact" },
           ].map((item, index) => (
             <motion.a
               key={item.name}

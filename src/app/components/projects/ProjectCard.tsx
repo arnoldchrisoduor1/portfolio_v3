@@ -23,6 +23,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onProj
       <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 group-hover:scale-105 group-hover:border-white/20">
         {/* Project Image */}
         <div className="relative h-48 overflow-hidden">
+          {project.images[0] ? (
           <Image
             src={project.images[0]}
             alt={project.title}
@@ -32,6 +33,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onProj
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R"
           />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-black flex items-end p-4">
+              <span className="text-sm text-gray-200">{project.subtitle}</span>
+            </div>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
           {/* Category Badges */}
